@@ -1,6 +1,6 @@
 package figures
 
-open class Cell(
+open class Cell (
     var letter: String? = null,
     var number: Int? = null,
     var color: String? = null,

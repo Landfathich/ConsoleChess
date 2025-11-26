@@ -15,7 +15,6 @@ import utils.FigureConstants.BLACK_ROOK
 import utils.FigureConstants.WHITE_BISHOP
 import utils.FigureConstants.WHITE_KING
 import utils.FigureConstants.WHITE_KNIGHT
-import utils.FigureConstants.WHITE_PAWN
 import utils.FigureConstants.WHITE_QUEEN
 import utils.FigureConstants.WHITE_ROOK
 
@@ -96,8 +95,7 @@ class Board {
 
         for (i in 1..8) {
             board[2][i] = Pawn(BLACK, board[2][i].letter, board[2][i].number)
-            board[7][i].shownChar = WHITE_PAWN
-            board[7][i].color = WHITE
+            board[7][i] = Pawn(WHITE, board[7][i].letter, board[7][i].number)
         }
     }
 
@@ -227,6 +225,11 @@ class Board {
         if (!isValidColorCellTo(cellTo)) {
             println("You can't turn to figure of your color")
             return false
+        }
+
+        if (cellFrom is Pawn) {
+            val pawn = cellFrom as Pawn
+            pawn.isCanMove(cellTo)
         }
 
         return true
